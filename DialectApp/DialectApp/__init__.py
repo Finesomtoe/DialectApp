@@ -16,4 +16,4 @@ app.config['MYSQL_DATABASE_DB'] = 'testdb'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
-import FlaskTemplate.views
+import DialectApp.views

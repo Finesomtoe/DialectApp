@@ -3,8 +3,19 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
-from DialectApp import app
+from flask import render_template, session, url_for, flash 
+from flask.ext.wtf import Form
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import Required, Email, ValidationError
+from flask import request
+from flask import redirect 
+from DialectApp import app, mysql
+
+class NameForm(Form):
+    name = StringField('What is your name?', validators=[Required("Name is required.")])
+    email = StringField('Email', validators=[Email("Email is required")])
+    comment = TextAreaField('Enter your comment', validators=[Required()])
+    submit = SubmitField('Submit')
 
 @app.route('/')
 @app.route('/home')
@@ -34,6 +45,19 @@ def Authenticate():
     else:
      return "Logged in successfully"
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    name = None;
+    email = None;
+    comment = None;
+    form = NameForm();
+    if form.validate_on_submit():
+        session['name'] = form.name.data
+        form.name.data = ''     
+        email = form.email.data
+        form.email.data = ''
+        comment = form.comment.data
+        form.comment.data = ''
+        flash("Thank you for submitting your question. We'll get back to you as soon as possible!")
+        return redirect(url_for('contact'))
+    return render_template('contact.html', form=form, name=session.get('name'), email=email, comment=comment)
