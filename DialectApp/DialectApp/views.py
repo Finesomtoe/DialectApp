@@ -9,29 +9,31 @@ from DialectApp import app
 @app.route('/')
 @app.route('/home')
 def home():
-    """Renders the home page."""
     return render_template(
-        'index.html',
-        title='Home Page',
-        year=datetime.now().year,
-    )
+        'home.html',
+        title = 'Home Page',
+        year = datetime.now().year,)
+
+@app.route('/user/<name>')
+def user(name):
+    return render_template('user.html', title = 'Flasky', name=name)
+
+@app.route('/redirect')
+def redirectme():
+    return redirect('http://www.google.com')
+
+@app.route("/authenticate")
+def Authenticate():
+    username = request.args.get('UserName')
+    password = request.args.get('Password')
+    cursor = mysql.connect().cursor()
+    cursor.execute("SELECT * from user_test where username='" + username + "' and password='" + password + "'")
+    data = cursor.fetchone()
+    if data is None:
+     return "Username or Password is wrong"
+    else:
+     return "Logged in successfully"
 
 @app.route('/contact')
 def contact():
-    """Renders the contact page."""
-    return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
-    )
-
-@app.route('/about')
-def about():
-    """Renders the about page."""
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
-    )
+    return render_template('contact.html')

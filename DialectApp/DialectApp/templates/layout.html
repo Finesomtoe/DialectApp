@@ -1,46 +1,62 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - My Flask Application</title>
-    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">Application name</a>
-            </div>
+    <div class="navbar navbar-custom navbar-fixed-top">
+        <div class="page-border">
+            <a href="/" class="navbar-brand">Dialect App</a>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="list-inline-item"><a href=""><span class="glyphicon glyphicon-user"></span>Sign in</a></li>
+                    <li class="list-inline-item"><a href=""><span class="glyphicon glyphicon-log-in"></span> Signup</a></li>
                 </ul>
             </div>
         </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('home') }}">About</a></li>
+                <li><a href="{{ url_for('home') }}">Samples</a></li>
+                <li><a href="{{ url_for('home') }}">Contribute</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
 
-    <div class="container body-content">
-        {% block content %}{% endblock %}
-        <hr />
-        <footer>
-            <p>&copy; {{ year }} - My Flask Application</p>
-        </footer>
-    </div>
+
+    {% block content %}
+    {% endblock %}
+    <hr />
+    <footer class="text-center">
+        <a class="up-arrow" href="{{ url_for('home') }}" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a><br><br>
+        <p>&copy; {{ year }} - Limburgish Dialect App</p>
+    </footer>
 
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
+
+
     {% block scripts %}{% endblock %}
 
 </body>
