@@ -9,7 +9,7 @@ from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import Required, Email, ValidationError
 from flask import request
 from flask import redirect 
-from DialectApp import app, mysql
+from DialectApp import app, mysql, db
 
 class NameForm(Form):
     name = StringField('What is your name?', validators=[Required("Name is required.")])
@@ -61,3 +61,10 @@ def contact():
         flash("Thank you for submitting your question. We'll get back to you as soon as possible!")
         return redirect(url_for('contact'))
     return render_template('contact.html', form=form, name=session.get('name'), email=email, comment=comment)
+
+@app.route('/testdb')
+def testdb():
+  if db.session.query("1").from_statement("SELECT 1").all():
+    return 'It works.'
+  else:
+    return 'Something is broken.'

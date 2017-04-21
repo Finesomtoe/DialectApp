@@ -28,12 +28,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DialectApp\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DialectApp\models.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="DialectApp\__init__.py" />
     <Compile Include="DialectApp\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DialectApp\" />
+    <Folder Include="DialectApp\main\" />
     <Folder Include="DialectApp\static\" />
     <Folder Include="DialectApp\static\content\" />
     <Folder Include="DialectApp\static\fonts\" />
