@@ -4,18 +4,12 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template, session, url_for, flash 
-from flask.ext.wtf import Form
-from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import Required, Email, ValidationError
 from flask import request
 from flask import redirect 
 from DialectApp import app, mysql, db
+from .forms import SignupForm, ContactForm
+from .models import User
 
-class NameForm(Form):
-    name = StringField('What is your name?', validators=[Required("Name is required.")])
-    email = StringField('Email', validators=[Email("Email is required")])
-    comment = TextAreaField('Enter your comment', validators=[Required()])
-    submit = SubmitField('Submit')
 
 @app.route('/')
 @app.route('/home')
@@ -50,7 +44,7 @@ def contact():
     name = None;
     email = None;
     comment = None;
-    form = NameForm();
+    form = ContactForm();
     if form.validate_on_submit():
         session['name'] = form.name.data
         form.name.data = ''     
@@ -62,9 +56,32 @@ def contact():
         return redirect(url_for('contact'))
     return render_template('contact.html', form=form, name=session.get('name'), email=email, comment=comment)
 
-@app.route('/testdb')
-def testdb():
-  if db.session.query("1").from_statement("SELECT 1").all():
-    return 'It works.'
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+  form = SignupForm()
+   
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('signup.html', form=form)
+    else:
+      newuser = User(form.email.data, form.username.data, form.password.data, form.region.data)
+      db.session.add(newuser)
+      db.session.commit()
+      session['email'] = newuser.email
+      return redirect(url_for('profile'))  
+
+  elif request.method == 'GET':
+    return render_template('signup.html', form=form)
+
+@app.route('/profile')
+def profile():
+ 
+  if 'email' not in session:
+    return redirect('http://www.google.com')
+ 
+  user = User.query.filter_by(email = session['email']).first()
+ 
+  if user is None:
+    return redirect('http://www.google.com')
   else:
-    return 'Something is broken.'
+    return render_template('profile.html')

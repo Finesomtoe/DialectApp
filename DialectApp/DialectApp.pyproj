@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DialectApp\templates\home.html" />
+    <Content Include="DialectApp\templates\profile.html" />
+    <Content Include="DialectApp\templates\signup.html" />
+    <Content Include="DialectApp\templates\test.html" />
     <Content Include="requirements.txt" />
     <Content Include="DialectApp\static\content\bootstrap.css" />
     <Content Include="DialectApp\static\content\bootstrap.min.css" />

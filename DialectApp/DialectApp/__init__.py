@@ -10,6 +10,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 mysql = MySQL()
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+app.secret_key = 'somtoskeyinwhichnobodycanguess'
 #app.config['SECRET_KEY'] = 'my very secret yeeeys'
 #app.config['MYSQL_DATABASE_USER'] = 'root'
 #app.config['MYSQL_DATABASE_PASSWORD'] = 'sokoamshe619+'

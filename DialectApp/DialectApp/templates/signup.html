@@ -1,0 +1,38 @@
+﻿{% import "bootstrap/wtf.html" as wtf %}
+    {% block content %}
+    <h2>Sign up</h2>
+    <div class="midsection">
+        {% for message in form.username.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.email.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.region.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        <form action="{{ url_for('signup') }}" method=post>
+            {{ form.hidden_tag() }}
+
+            {{ form.username }}
+
+            {{ form.email }}
+
+            {{ form.password }}
+
+            {{ form.region }}
+
+            {{ form.submit }}
+        </form>
+    </div>   
+    {% endblock %}
+
+   
+
