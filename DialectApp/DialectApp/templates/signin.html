@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - My Flask Application</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>    
+</head>
+<body background="/static/website-background.jpg">
+    {% block content %}
+
+    <div class="signup-div">
+        {% for message in form.email.errors %}
+        <div class="flash flash-warning">{{ message }}</div>
+        {% endfor %}
+        <br />
+
+        <h1>Sign In</h1>
+        <form class="signup-form" action="{{ url_for('signin') }}" method=post>
+            {{ form.hidden_tag() }}
+          
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-envelope" style="color:green"></i>
+                {{ form.email }}
+            </div>
+            
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-lock" style="color:green"></i>
+                {{ form.password }}
+            </div>
+            {% for message in form.password.errors %}
+            <div class="flash">{{ message }}</div>
+            {% endfor %}
+            <br />        
+
+            {{ form.submit }}
+
+        </form>
+    </div>
+
+    {% endblock %}
+</body>
+</html>

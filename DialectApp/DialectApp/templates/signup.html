@@ -1,38 +1,60 @@
-﻿{% import "bootstrap/wtf.html" as wtf %}
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - My Flask Application</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>    
+</head>
+<body background="/static/website-background.jpg">
+    {% import "bootstrap/wtf.html" as wtf %}
     {% block content %}
-    <h2>Sign up</h2>
-    <div class="midsection">
-        {% for message in form.username.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.email.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.password.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.region.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-        <form action="{{ url_for('signup') }}" method=post>
+    
+    <div class="signup-div">
+        <h1>App Sign Up</h1>
+        <form class="signup-form" action="{{ url_for('signup') }}" method=post>
             {{ form.hidden_tag() }}
 
-            {{ form.username }}
+                {{ form.username }}
+            {% for message in form.username.errors %}
+            <div class="flash flash-warning">{{ message }}</div>
+            {% endfor %}
+            <br />
 
-            {{ form.email }}
+                {{ form.email }}
+            {% for message in form.email.errors %}
+            <div class="flash flash-warning">{{ message }}</div>
+            {% endfor %}
+            <br />
 
-            {{ form.password }}
+                {{ form.password }}
+            {% for message in form.password.errors %}
+            <div class="flash">{{ message }}</div>
+            {% endfor %}
+            <br />
 
-            {{ form.region }}
+                {{ form.region }}
+            {% for message in form.region.errors %}
+            <div class="flash">{{ message }}</div>
+            {% endfor %}
+            <br />
 
-            {{ form.submit }}
+                {{ form.submit }}             
+
         </form>
-    </div>   
+    </div>
+    
     {% endblock %}
+
+    <div class="signup-footer">
+        <a href="{{ url_for('signin') }}">Have an account? Log in</a>
+    </div>
+</body>
+</html>
+
 
    
 

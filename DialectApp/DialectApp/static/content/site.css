@@ -326,66 +326,159 @@ header .top {
     }
 
     /* Signup form */
-    form input#username,
-    form input#region,
-    form input#email,
-    form input#password {
-        width: 300px;
-        height: 500px;
-        background-color: #ffffff;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #cccccc;
-        padding: 5px;
-        font-size: 1.1em;
+form input#username,
+form input#region,
+form input#email,
+form input#password {
+    width: 100%;
+    padding: 12px 30px;
+    margin: 8px 0;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #33aa33;
+    box-sizing: border-box;
+}
+
+    form input#region{
+        margin-bottom: 20px;
     }
 
-    form input#password {
-        margin-bottom: 10px;
+
+form input#submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding-top: 20px;
+        padding-left:10px;
+        pointer-events: none;
     }
 
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
 
-    form input#submit {
-        display: block;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #d8d8d8;
-        padding: 10px;
-        font-weight: bold;
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 20px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+/* Extra styles for the cancel button */ 
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+
+/* Add padding to container elements */
+.signupcontainer {
+    padding: 10px;
+    width: 100%;
+    border: 3px solid #33aa33;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, form input#submit {
+        width: 100%;
+    }
+}
+
+.signup-div {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    /* Center form on page horizontally & vertically */
+    top: 30%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+}
+    .signup-div h1 {
+        color:#ffffff;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-align: center;
-        color: #000000;
-        background-color: #f4f4f4;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
-        background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
-        background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
-        background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
-        background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
-        background-image: linear-gradient(top, #f4f4f4, #e5e5e5);
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+        text-emphasis: circle;
+        font-weight: bold;
     }
 
-        form input#submit:hover {
-            cursor: pointer;
-            border: 1px solid #c1c1c1;
-            background-color: #dbdbdb;
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%, #cccccc));
-            background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
-            background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
-            background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
-            background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
-            background-image: linear-gradient(top, #dbdbdb, #cccccc);
-            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
-        }
+.signup-form {
+    width: 300px;
+    height: 300px;
+    border-color: #33aa33;
+    border-radius: 10px;
+    margin: 0;
+    padding: 4px;
+}
 
-
+.signup-footer {
+    display: table;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+    .signup-footer a {
+        color: #ffffff;
+        align-content: center;
+    }
 
 .flash {
     background-color: #FBB0B0;
-    padding: 10px;
-    width: 400px;
+    padding: 4px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
 }
+
+
+.flash-warning {
+        color: #000000;
+        border-color: #ffffff;
+}
+        .flash-warning .flash-link {
+            color: #a47e3c;
+        }
+
+        .flash-warning hr {
+            border-top-color: #f8e5be;
+        }
+
+        .flash-warning .alert-link {
+            color: #a47e3c;
+        }        
+
+
 .page-border {
     padding-bottom: 2px;
     margin: 2px 0 2px;
@@ -500,3 +593,5 @@ header .top {
         .navbar-toggle .icon-bar + .icon-bar {
             margin-top: 4px;
         }
+
+

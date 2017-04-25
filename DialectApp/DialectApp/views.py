@@ -7,7 +7,7 @@ from flask import render_template, session, url_for, flash
 from flask import request
 from flask import redirect 
 from DialectApp import app, mysql, db
-from .forms import SignupForm, ContactForm
+from .forms import SignupForm, ContactForm, SigninForm
 from .models import User
 
 
@@ -59,7 +59,10 @@ def contact():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
   form = SignupForm()
-   
+  
+  if 'email' in session:
+    return redirect(url_for('profile')) 
+
   if request.method == 'POST':
     if form.validate() == False:
       return render_template('signup.html', form=form)
@@ -73,6 +76,23 @@ def signup():
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
 
+@app.route('/signin', methods=['GET', 'POST'])
+def signin():
+  form = SigninForm()
+   
+  if 'email' in session:
+    return redirect(url_for('profile')) 
+
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('signin.html', form=form)
+    else:
+      session['email'] = form.email.data
+      return redirect(url_for('profile'))
+                 
+  elif request.method == 'GET':
+    return render_template('signin.html', form=form)
+
 @app.route('/profile')
 def profile():
  
@@ -85,3 +105,12 @@ def profile():
     return redirect('http://www.google.com')
   else:
     return render_template('profile.html')
+
+@app.route('/signout')
+def signout():
+ 
+  if 'email' not in session:
+    return redirect(url_for('signin'))
+     
+  session.pop('email', None)
+  return redirect(url_for('home'))

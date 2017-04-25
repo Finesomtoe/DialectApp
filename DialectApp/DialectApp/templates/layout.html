@@ -15,8 +15,13 @@
             <a href="/" class="navbar-brand">Dialect App</a>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="list-inline-item"><a href=""><span class="glyphicon glyphicon-user"></span>Sign in</a></li>
+                    {% if 'email' in session %}
+                    <li class="list-inline-item"><a href="{{ url_for('profile') }}"><span class="glyphicon glyphicon-user"></span>{{ session['username'] }}</a></li>
+                    <li class="list-inline-item"><a href="{{ url_for('signout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {% else %}
+                    <li class="list-inline-item"><a href="{{ url_for('signin') }}"><span class="glyphicon glyphicon-user"></span>Sign in</a></li>
                     <li class="list-inline-item"><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-log-in"></span> Signup</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
