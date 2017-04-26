@@ -3,12 +3,13 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, session, url_for, flash 
+from flask import render_template, session, url_for, flash  
 from flask import request
 from flask import redirect 
 from DialectApp import app, mysql, db
-from .forms import SignupForm, ContactForm, SigninForm
+from .forms import ContactForm, SignupForm, SigninForm
 from .models import User
+from flask.ext.login import login_user, logout_user, login_required
 
 
 @app.route('/')
@@ -56,7 +57,7 @@ def contact():
         return redirect(url_for('contact'))
     return render_template('contact.html', form=form, name=session.get('name'), email=email, comment=comment)
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/sign_up', methods=['GET', 'POST'])
 def signup():
   form = SignupForm()
   
@@ -70,13 +71,14 @@ def signup():
       newuser = User(form.email.data, form.username.data, form.password.data, form.region.data)
       db.session.add(newuser)
       db.session.commit()
-      session['email'] = newuser.email
-      return redirect(url_for('profile'))  
+      #session['email'] = newuser.email
+      login_user(newuser)
+      return redirect(url_for('profile', username=newuser.username))  
 
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
 
-@app.route('/signin', methods=['GET', 'POST'])
+@app.route('/sign_in', methods=['GET', 'POST'])
 def signin():
   form = SigninForm()
    
@@ -87,30 +89,31 @@ def signin():
     if form.validate() == False:
       return render_template('signin.html', form=form)
     else:
-      session['email'] = form.email.data
-      return redirect(url_for('profile'))
+        user = User.query.filter_by(email=form.email.data).first()
+        #session['email'] = form.email.data
+        login_user(user, form.remember_me.data)
+        return redirect(request.args.get('next') or url_for('profile', username=user.username))
                  
   elif request.method == 'GET':
     return render_template('signin.html', form=form)
 
-@app.route('/profile')
-def profile():
- 
-  if 'email' not in session:
-    return redirect('http://www.google.com')
- 
-  user = User.query.filter_by(email = session['email']).first()
- 
-  if user is None:
-    return redirect('http://www.google.com')
-  else:
-    return render_template('profile.html')
+@app.route('/profile/<username>')
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+
+    if user is None:
+        return redirect('http://www.google.com')
+    else:
+        return render_template('profile.html', user=user)
+  
 
 @app.route('/signout')
+@login_required
 def signout():
+    logout_user()
+    return redirect(url_for('home'))
  
-  if 'email' not in session:
-    return redirect(url_for('signin'))
+  #if 'email' not in session:
+    #return redirect(url_for('auth.signin'))
      
-  session.pop('email', None)
-  return redirect(url_for('home'))
+  #session.pop('email', None)

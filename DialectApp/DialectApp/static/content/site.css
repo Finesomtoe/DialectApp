@@ -329,7 +329,8 @@ header .top {
 form input#username,
 form input#region,
 form input#email,
-form input#password {
+form input#password,
+form input#password2{
     width: 100%;
     padding: 12px 30px;
     margin: 8px 0;

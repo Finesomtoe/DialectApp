@@ -36,6 +36,12 @@
             {% endfor %}
             <br />
 
+               {{ form.password2 }}
+            {% for message in form.password2.errors %}
+            <div class="flash">{{ message }}</div>
+            {% endfor %}
+            <br />
+
                 {{ form.region }}
             {% for message in form.region.errors %}
             <div class="flash">{{ message }}</div>
