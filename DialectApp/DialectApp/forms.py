@@ -32,7 +32,7 @@ class SignupForm(Form):
 class SigninForm(Form):
   email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")], render_kw={"placeholder": "Email Address"})
   password = PasswordField('Password', [validators.Required("Please enter a password.")], render_kw={"placeholder": "Password"})
-  remember_me = BooleanField('Keep me logged in')
+  remember_me = BooleanField('Remember me')
   submit = SubmitField("Sign In")
    
   def __init__(self, *args, **kwargs):

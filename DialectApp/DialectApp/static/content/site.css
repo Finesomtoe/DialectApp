@@ -340,6 +340,7 @@ form input#password2{
     box-sizing: border-box;
 }
 
+
     form input#region{
         margin-bottom: 20px;
     }
@@ -414,6 +415,21 @@ form input#submit {
         width: 100%;
     }
 }
+
+.navigation ul {
+    margin: 0;
+    padding: 0;
+}
+
+    .navigation ul li {
+        list-style-type: none;
+        display: inline;
+    }
+
+.navigation li:not(:first-child):before {
+    content: " | ";
+}
+
 
 .signup-div {
     position: absolute;

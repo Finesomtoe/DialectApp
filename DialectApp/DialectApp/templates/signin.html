@@ -36,7 +36,11 @@
             {% endfor %}
             <br />        
 
-            {{form.remember_me}}<br/>
+            <div class="checkbox inline" style="color:crimson; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" >              
+                {{form.remember_me}}
+                {{form.remember_me.label}}
+            </div>
+            
 
             {{ form.submit }}
 
