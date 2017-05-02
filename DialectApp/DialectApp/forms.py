@@ -57,6 +57,6 @@ class ContactForm(Form):
 
 
 class EditProfileForm(Form):
-    username = StringField('Real name', validators=[Length(0, 64)])
+    username = StringField('Real name', [validators.Length(0, 64)])
     about_me = TextAreaField('About Me')
     submit = SubmitField('Save Changes')

@@ -126,7 +126,7 @@ def signout():
   #session.pop('email', None)
 
 
-@app.route('edit-profile', methods=['GET', 'POST'])
+@app.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()
