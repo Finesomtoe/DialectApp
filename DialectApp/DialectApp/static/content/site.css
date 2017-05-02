@@ -166,6 +166,36 @@ input[type="checkbox"].input-validation-error {
             left: 100%;
         }
 
+.profileheader {
+    overflow: hidden;
+}
+
+    .profileheader h2 {
+        display: inline-block;
+        padding: 0 15px;
+        position: relative;
+    }
+
+        .profileheader h2:before,
+        .profileheader h2:after {
+            background: #ddd;
+            content: "";
+            display: block;
+            height: 1px;
+            position: absolute;
+            top: 50%;
+            width: 300%;
+        }
+
+        .profileheader h2:before {
+            right: 100%;
+        }
+
+        .profileheader h2:after {
+            left: 100%;
+        }
+
+
 .subsection {
     border: 4px solid transparent;
     margin-bottom: 25px;

@@ -48,6 +48,8 @@
     <Folder Include="DialectApp\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DialectApp\templates\confirm.txt" />
+    <Content Include="DialectApp\templates\edit_profile.html" />
     <Content Include="DialectApp\templates\home.html" />
     <Content Include="DialectApp\templates\profile.html" />
     <Content Include="DialectApp\templates\signin.html" />

@@ -6,10 +6,12 @@ from datetime import datetime
 from flask import render_template, session, url_for, flash  
 from flask import request
 from flask import redirect 
-from DialectApp import app, mysql, db
-from .forms import ContactForm, SignupForm, SigninForm
+from DialectApp import app, mysql, db, send_email, mail 
+from .forms import ContactForm, SignupForm, SigninForm, EditProfileForm
 from .models import User
 from flask.ext.login import login_user, logout_user, login_required
+from flask.ext.mail import Message
+
 
 
 @app.route('/')
@@ -71,6 +73,11 @@ def signup():
       newuser = User(form.email.data, form.username.data, form.password.data, form.region.data)
       db.session.add(newuser)
       db.session.commit()
+      #msg = Message('Welcome to Dialect App', sender='senendu5@yahoo.com', recipients=[newuser.email])
+      #msg.body = 'Dear ' + newuser.username.title() + ',' + '\n\nWelcome to the Dialect App! You are now registered in our application. Enjoy pronouncing. \n\nSincerely, \nThe Dialect App Team'
+      #mail.send(msg)
+      #token = newuser.generate_confirmation_token()
+      send_email(newuser.email, 'Welcome to Dialect App', 'confirm', newuser=newuser)
       #session['email'] = newuser.email
       login_user(newuser)
       return redirect(url_for('profile', username=newuser.username))  
@@ -117,3 +124,17 @@ def signout():
     #return redirect(url_for('auth.signin'))
      
   #session.pop('email', None)
+
+
+@app.route('edit-profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+         current_user.username = form.username.data
+         current_user.about_me = form.about_me.data
+         db.session.commit()
+         return redirect(url_for('profile', username=current_user.username))
+    form.username.data = current_user.username
+    form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', form=form) 

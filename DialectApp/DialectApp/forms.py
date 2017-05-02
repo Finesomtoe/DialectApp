@@ -54,3 +54,9 @@ class ContactForm(Form):
     email = StringField('Email', [validators.Email("Email is required")])
     comment = TextAreaField('Enter your comment', [validators.Required("Write your comment")])
     submit = SubmitField('Submit')
+
+
+class EditProfileForm(Form):
+    username = StringField('Real name', validators=[Length(0, 64)])
+    about_me = TextAreaField('About Me')
+    submit = SubmitField('Save Changes')

@@ -3,6 +3,7 @@ from DialectApp import app, mysql, db, login_manager
 from werkzeug import generate_password_hash, check_password_hash
 from datetime import datetime 
 from flask.ext.login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -16,9 +17,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(100))
     pwdhash = db.Column(db.String(100))
     region = db.Column(db.String(120))
-    #about_me = db.Column(db.Text())
-    #member_since = db.Column(db.DateTime(), default=datetime.utcnow)
-    #last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
+    about_me = db.Column(db.Text())
+    member_since = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __init__(self, email, username, password, region):      
         self.email = email.lower()
@@ -34,4 +34,21 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+    #def generate_confirmation_token(self, expiration=3600):
+    #    s = Serializer(app.config['SECRET_KEY'], expiration)
+    #    return s.dumps({'confirm': self.id})
+
+    #def confirm(self, token):
+    #    s = Serializer(app.config['SECRET_KEY'])
+    #    try:
+    #        data = s.loads(token)
+    #    except:
+    #        return False
+    #    if data.get('confirm') != self.id:
+    #        return False
+    #    self.confirmed = True
+    #    db.session.add(self)
+    #    return True
+
 

@@ -1,0 +1,7 @@
+Dear {{ current_user.username }},
+
+Welcome to the Dialect App!
+
+Sincerely,
+
+The Dialect App Team
