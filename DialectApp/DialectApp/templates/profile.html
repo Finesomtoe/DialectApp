@@ -8,18 +8,24 @@
         <div class="panel-heading">
             <h3 class="panel-title">Basic Account Information </h3>
         </div>
-        <div class="panel-body">
-            <h2>Username:  {{current_user.username}}</h2>
-            <p>
-                <h2>About me: </h2>
-            </p>    
-            <p>
-                <h2>Member Since: {{current_user.member_since}}</h2>
-            </p>           
+        <div class="panel-body" id="1" style="position:relative">
+            <div class="edit">
+                <button type="button" class="btn btn-default btn-round-lg btn-lg">Edit <span class="glyphicon glyphicon-pen"></span></button>
+            </div>  
+            <div class="post-thumb">
+                <img class="img-rounded profile-thumbnail" src="{{ current_user.gravatar(size=164)}}" />
+            </div>                                         
+            <div class="post-content">                           
+                    <h3 class="post-title">{{current_user.username.title()}}</h3>
+                    <p style="font-family: 'Agency FB'">
+                        About me:
+                    </p>
+                    <p style="font-family: 'Agency FB'">
+                        Started pronouncing {{ moment(current_user.member_since).format('LL')}}
+                    </p> 
+                </div>                                           
         </div>
     </div>
 </div>
     
-
-
 {% endblock %}

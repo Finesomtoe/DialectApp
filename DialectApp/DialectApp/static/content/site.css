@@ -166,35 +166,28 @@ input[type="checkbox"].input-validation-error {
             left: 100%;
         }
 
-.profileheader {
-    overflow: hidden;
+.post-thumb {
+    float: left
 }
 
-    .profileheader h2 {
-        display: inline-block;
-        padding: 0 15px;
-        position: relative;
+    .post-thumb img {
+        display: block
     }
 
-        .profileheader h2:before,
-        .profileheader h2:after {
-            background: #ddd;
-            content: "";
-            display: block;
-            height: 1px;
-            position: absolute;
-            top: 50%;
-            width: 300%;
-        }
+.post-content {
+    margin-left: 210px
+}
 
-        .profileheader h2:before {
-            right: 100%;
-        }
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
 
-        .profileheader h2:after {
-            left: 100%;
-        }
-
+.edit {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
 
 .subsection {
     border: 4px solid transparent;

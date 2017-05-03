@@ -10,6 +10,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail, Message
 from threading import Thread
+from flask.ext.moment import Moment
+
 
 
 mysql = MySQL()
@@ -36,6 +38,7 @@ login_manager.init_app(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sokoamshe619+@localhost/testdb'
 db = SQLAlchemy(app)
 mail = Mail(app)
+moment = Moment(app)
    
 def send_async_email(app, msg):
       with app.app_context():

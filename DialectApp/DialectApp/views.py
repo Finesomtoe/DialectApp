@@ -77,7 +77,7 @@ def signup():
       #msg.body = 'Dear ' + newuser.username.title() + ',' + '\n\nWelcome to the Dialect App! You are now registered in our application. Enjoy pronouncing. \n\nSincerely, \nThe Dialect App Team'
       #mail.send(msg)
       #token = newuser.generate_confirmation_token()
-      send_email(newuser.email, 'Welcome to Dialect App', 'confirm', newuser=newuser)
+      #send_email(newuser.email, 'Welcome to Dialect App', 'confirm', newuser=newuser)
       #session['email'] = newuser.email
       login_user(newuser)
       return redirect(url_for('profile', username=newuser.username))  
