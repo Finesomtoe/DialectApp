@@ -107,11 +107,21 @@ def signin():
 @app.route('/profile/<username>')
 def profile(username):
     user = User.query.filter_by(username=username).first()
+    form = EditProfileForm()
 
     if user is None:
         return redirect('http://www.google.com')
     else:
-        return render_template('profile.html', user=user)
+        return render_template('profile.html', user=user, form=form)
+    
+    if form.validate_on_submit():
+         current_user.username = form.username.data
+         current_user.about_me = form.about_me.data
+         db.session.commit()
+         return redirect(url_for('profile', username=current_user.username))
+    form.username.data = current_user.username
+    form.about_me.data = current_user.about_me
+    #return render_template('profile.html', form=form) 
   
 
 @app.route('/signout')

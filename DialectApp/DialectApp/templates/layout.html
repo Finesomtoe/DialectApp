@@ -22,7 +22,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"></span>
                             {{ current_user.username.title() }} 
-                            <span class="caret"></span>
+                            <span class="caret glyphicon-color"></span>
                         </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
                                 <li role="presentation"><a role="link" href="{{ url_for('profile', username=current_user.username) }}">My profile</a></li>
@@ -72,6 +72,8 @@
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
+    <script src="/static/scripts/changediv.js"></script>
+
 
 
     {% block scripts %}{% endblock %}
