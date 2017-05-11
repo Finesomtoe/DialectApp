@@ -14,29 +14,7 @@
 <body>
     <div class="navbar navbar-custom navbar-fixed-top">
         <div class="page-border">
-            <a href="/" class="navbar-brand">Dialect App</a>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">      
-                    {% if current_user.is_authenticated %}
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span class="glyphicon glyphicon-user"></span>
-                            {{ current_user.username.title() }} 
-                            <span class="caret glyphicon-color"></span>
-                        </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-                                <li role="presentation"><a role="link" href="{{ url_for('profile', username=current_user.username) }}">My profile</a></li>
-                                <li role="presentation"><a role="link" href="{{ url_for('signout') }}"> Logout</a></li>
-                                <li class="divider"></li>
-                                <li role="separator"><a href="#">Media</a></li>
-                            </ul>                       
-                    </li>
-                    {% else %}
-                    <li class="list-inline-item"><a href="{{ url_for('signin') }}"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
-                    <li class="list-inline-item"><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-log-in"></span> Signup</a></li>
-                    {% endif %}
-                </ul>
-            </div>
+            <a href="/" class="navbar-brand">MaasVoices</a>         
         </div>
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -46,13 +24,34 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav text-center">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('home') }}">Samples</a></li>
                 <li><a href="{{ url_for('home') }}">Contribute</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{ current_user.username.title() }}
+                        <span class="caret glyphicon-color"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                        <li role="presentation"><a role="link" href="{{ url_for('profile', username=current_user.username) }}">My profile</a></li>
+                        <li role="presentation"><a role="link" href="{{ url_for('signout') }}"> Logout</a></li>
+                        <li class="divider"></li>
+                        <li role="separator"><a href="#">Media</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="list-inline-item"><a href="{{ url_for('signin') }}"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-log-in"></span> Signup</a></li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->

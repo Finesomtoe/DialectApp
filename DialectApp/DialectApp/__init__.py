@@ -35,7 +35,7 @@ app.config['DIALECT_APP_SENDER'] = 'senendu5@yahoo.com'
 #app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 #mysql.init_app(app)
 login_manager.init_app(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sokoamshe619+@localhost/testdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://limdialect_admin:OeOCMPSMn8NT7@mysql-limdialect.science.ru.nl/limdialect'
 db = SQLAlchemy(app)
 mail = Mail(app)
 moment = Moment(app)
