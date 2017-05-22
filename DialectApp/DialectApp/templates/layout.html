@@ -14,22 +14,22 @@
 <body>
     <div class="navbar navbar-custom navbar-fixed-top">
         <div class="page-border">
-            <a href="/" class="navbar-brand">Dialect App</a>
+            <a href="/" class="navbar-brand">MaasVoices</a>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">      
+                <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_authenticated %}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"></span>
-                            {{ current_user.username.title() }} 
+                            {{ current_user.username.title() }}
                             <span class="caret glyphicon-color"></span>
                         </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-                                <li role="presentation"><a role="link" href="{{ url_for('profile', username=current_user.username) }}">My profile</a></li>
-                                <li role="presentation"><a role="link" href="{{ url_for('signout') }}"> Logout</a></li>
-                                <li class="divider"></li>
-                                <li role="separator"><a href="#">Media</a></li>
-                            </ul>                       
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li role="presentation"><a role="link" href="{{ url_for('profile', username=current_user.username) }}">My profile</a></li>
+                            <li role="presentation"><a role="link" href="{{ url_for('signout') }}"> Logout</a></li>
+                            <li class="divider"></li>
+                            <li role="separator"><a href="#">Media</a></li>
+                        </ul>
                     </li>
                     {% else %}
                     <li class="list-inline-item"><a href="{{ url_for('signin') }}"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
@@ -46,6 +46,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -54,6 +55,7 @@
                 <li><a href="{{ url_for('home') }}">Contribute</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
+            
         </div>
         <!-- /.navbar-collapse -->
     </div>

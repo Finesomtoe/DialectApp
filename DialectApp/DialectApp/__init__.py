@@ -25,7 +25,7 @@ app.config["MAIL_SERVER"] = "smtp.mail.yahoo.com"
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = 'senendu5@yahoo.com'
-app.config["MAIL_PASSWORD"] = 'somteechinaza95'
+app.config["MAIL_PASSWORD"] = ''
 app.config['DIALECT_APP_SUBJECT'] = '[Dialect App]'
 app.config['DIALECT_APP_SENDER'] = 'senendu5@yahoo.com'
 #app.config['SECRET_KEY'] = 'my very secret yeeeys'
@@ -35,7 +35,7 @@ app.config['DIALECT_APP_SENDER'] = 'senendu5@yahoo.com'
 #app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 #mysql.init_app(app)
 login_manager.init_app(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sokoamshe619+@localhost/testdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://limdialect_admin:OeOCMPSMn8NT7@mysql-limdialect.science.ru.nl/limdialect'
 db = SQLAlchemy(app)
 mail = Mail(app)
 moment = Moment(app)
